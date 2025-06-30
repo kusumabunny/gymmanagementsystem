@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GYM Management System</title>
+  <style>
+    /* styles.css */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background-color: #222;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 20px;
+    }
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+    .login-container {
+      background-color: white;
+      padding: 30px;
+      margin: 40px auto;
+      width: 300px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      border-radius: 10px;
+    }
+    .login-container h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .login-container input,
+    .login-container button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+    }
+    .login-container input {
+      border: 1px solid #ccc;
+    }
+    .login-container button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .login-container button:hover {
+      background-color: #0056b3;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      background: white;
+      margin: 5px 0;
+      padding: 10px;
+      border-left: 5px solid #007BFF;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 5px;
+    }
+    ul li button {
+      margin-left: 10px;
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    ul li button:hover {
+      background-color: #b52a37;
+    }
+    .section-toggle {
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>GYM Management System</h1>
+    <nav>
+      <a href="#" onclick="showSection('home')">Home</a>
+      <a href="#" onclick="showSection('admin')">Admin</a>
+      <a href="#" onclick="showSection('member')">Member</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="section-toggle active">
+      <h2>Welcome!</h2>
+      <p>Use the menu above to access different modules.</p>
+    </section>
+
+    <section id="admin" class="section-toggle">
+      <div class="login-container">
+        <h2>Admin Login</h2>
+        <form onsubmit="adminLogin(event)">
+          <input type="email" id="adminEmail" placeholder="Email" required>
+          <input type="password" id="adminPassword" placeholder="Password" required>
+          <button type="submit">Login</button>
+        </form>
+        <p id="adminMessage"></p>
+      </div>
+    </section>
+
+    <section id="member" class="section-toggle">
+      <div class="login-container">
+        <h2>Member Login</h2>
+        <form onsubmit="memberLogin(event)">
+          <input type="email" id="memberEmail" placeholder="Email" required>
+          <input type="password" id="memberPassword" placeholder="Password" required>
+          <button type="submit">Login</button>
+        </form>
+        <p id="memberMessage"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 GYM Management System</p>
+  </footer>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section-toggle').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function adminLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('adminEmail').value;
+      const pass = document.getElementById('adminPassword').value;
+      const msg = document.getElementById('adminMessage');
+      if (email === "admin@gym.com" && pass === "admin123") {
+        msg.textContent = "Admin login successful!";
+      } else {
+        msg.textContent = "Invalid credentials";
+      }
+    }
+
+    function memberLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('memberEmail').value;
+      const pass = document.getElementById('memberPassword').value;
+      const msg = document.getElementById('memberMessage');
+      if (email === "member@gym.com" && pass === "member123") {
+        msg.textContent = "Member login successful!";
+      } else {
+        msg.textContent = "Invalid credentials";
+      }
+    }
+  </script>
+</body>
+</html>
